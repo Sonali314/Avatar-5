@@ -26,7 +26,8 @@ router.post("/register", upload.single("image"), (req, res) => {
     gender: req.body.gender,
     img: {
       data: fs.readFileSync(
-        path.join(__dirname, "..", "FaceRecognitionProject","ImageStudents", req.file.filename)
+        path.join(__dirname, "..","public", "face","ImageStudents", req.file.filename)
+        // path.join(__dirname, "..", "FaceRecognitionProject","ImageStudents", req.file.filename)
       ),
       contentType: "image/png",
     },
@@ -47,7 +48,8 @@ router.post("/register", upload.single("image"), (req, res) => {
 router.get('/facescan', (req, res) => {
 
   const { spawn } = require('child_process');
-  const pyProg = spawn('python', ['FaceRecognitionProject/tester.py/admitCard.py']);
+  const pyProg = spawn('python', ['public/face/tester.py/admitCard.py']);
+  // const pyProg = spawn('python', ['FaceRecognitionProject/tester.py/admitCard.py']);
 
   pyProg.stdout.on('data', function(data) {
 
